@@ -53,13 +53,25 @@ public class SV_bank {
 						System.out.println("welcome admin");
 						do
 						{
+							User user;
 							System.out.println("\n1.Get user details"
-									+ "\n3.Update user details/n4.Delete user details");
+									+ "\n2.Update user details\n3.Delete user details \n4.Logout");
 							int operation=Integer.parseInt(br.readLine());
 							switch(operation)
 							{
 							case 1:
-							{}
+							{
+								System.out.println("Index UserName        Phone       Age      Balance");
+									System.out.println("********************************************************************************");
+									for(int i=0;i<usersList.size();i++)
+									{
+										user=usersList.get(i);
+										int index=i+1;
+										System.out.println(index+") "+user.getUserName()+"           "+user.getPhoneNumber()+"          "+user.getAge()+"        "+user.getBankBalance());
+										System.out.println("********************************************************************************");
+									}
+									break;
+							}
 							case 2:
 							{}
 							case 3:
@@ -76,7 +88,12 @@ public class SV_bank {
 						}while(true);
 					
 				}
+					else
+					{
+						System.out.println("Access denied!!");
 					}
+					}
+				break;
 				case 2:
 				{
 					User testUser = null;
