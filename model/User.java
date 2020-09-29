@@ -1,6 +1,11 @@
 package model;
 
 public class User {
+	@Override
+	public String toString() {
+		return "User [userName=" + userName + ", password1=" + password1 + ", age=" + age + ", phoneNumber="
+				+ phoneNumber + ", address=" + address + ", proofId=" + proofId + ", bankBalance=" + bankBalance + "]";
+	}
 	private String userName;
 	private String password1;
 	private int age;
