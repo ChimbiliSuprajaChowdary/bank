@@ -28,7 +28,8 @@ public class SV_bank {
 		while (!success) {
 		try {
 		do {
-			System.out.println("WELCOME TO THE BANK");
+			System.out.println("                  WELCOME                                   ");
+			System.out.println("----------––––•(-• SV Bank •-)•–-----------------------–––---");
 			System.out.println("Enter your choice");
 			System.out.println("1.Admin");
 			System.out.println("2.User Login");
