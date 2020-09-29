@@ -35,7 +35,7 @@ public class SV_bank {
 					Admin admin=new Admin();
 					String adminName;
 					String password;
-					password=br.readLine();
+					
 					System.out.println("Enter your username");
 					adminName=br.readLine();
 					System.out.println("Enter your password");
@@ -85,13 +85,15 @@ public class SV_bank {
 					
 					//testUser.setUserName(userName);
 					//testUser.setPassword1(userpassword);
+					Boolean notFounBoolean=false;
 					boolean isBreakTheLoop = false;
 					for(int i=0;i<usersList.size();i++)
 					{
 						testUser=usersList.get(i);
 						if(testUser.getUserName().contentEquals(userName) && testUser.getPassword1().contentEquals(userpassword))
 						{
-							System.out.println("welcome "+userName);
+							notFounBoolean=true;
+							System.out.println("welcome "+testUser.getUserName());
 							do
 							{
 								System.out.println("\n1.Deposit money\n2.Withdraw money"
@@ -134,7 +136,7 @@ public class SV_bank {
 									isBreakTheLoop=false;
 									String creString = service.applyCredit(testUser);
 									System.out.println(creString);
-									System.out.println("Your current Balence "+testUser.getBankBalance());6
+									System.out.println("Your current Balence "+testUser.getBankBalance());
 									
 									break;
 								}
@@ -159,9 +161,11 @@ public class SV_bank {
 							
 							}while(!isBreakTheLoop);
 						}
-						else {
-							System.out.println("Failed ..!!");
-						}
+						
+						
+					}
+					if (!notFounBoolean) {
+						System.out.println("User not found");
 					}
 					
 					
