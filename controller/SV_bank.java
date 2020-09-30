@@ -19,7 +19,7 @@ public class SV_bank {
 	public static void main(String[] args) throws NumberFormatException, IOException {
 		
 		Bank_services service=new Bank_services();
-		UserValidations validations = new UserValidations();
+		UserValidations validation = new UserValidations();
 		
 		 // Long phoneNumber2 = (long) 1234567890;
 		//System.out.println(validations.isNumber(phoneNumber2));
@@ -28,12 +28,12 @@ public class SV_bank {
 		while (!success) {
 		try {
 		do {
-			System.out.println("                  WELCOME                                   ");
-			System.out.println("----------�����(-� SV Bank �-)��-----------------------���---");
-			System.out.println("Enter your choice");
+			System.out.println("\t\t\t\t\t\tWELCOME");
+			System.out.println("---------------------------------------––––•(-• SV Bank •-)•–-----------------------------------------------------------–––---");
 			System.out.println("1.Admin");
 			System.out.println("2.User Login");
 			System.out.println("3.Apply for bank account");
+			System.out.println("\n➡Enter your choice");
 			int choice = Integer.parseInt(br.readLine());
 			
 				
@@ -43,57 +43,175 @@ public class SV_bank {
 					Admin admin=new Admin();
 					String adminName;
 					String password;
-					
-					System.out.println("Enter your username");
+					Boolean notFounBoolean=false;
+					System.out.println("➡Enter your username");
 					adminName=br.readLine();
-					System.out.println("Enter your password");
+					System.out.println("➡Enter your password");
 					password=br.readLine();
 					if(adminName.contentEquals(admin.getUserName()) && password.contentEquals(admin.getPassword()))
 					{
-						System.out.println("welcome admin");
+						int operation;
+						System.out.println("-–------------------------------–––•(-• Welcome Admin •-)•–---------------------------------------------------------------");
 						do
 						{
-							User user;
-							System.out.println("\n1.Get user details"
-									+ "\n2.Update user details\n3.Delete user details \n4.Logout");
-							int operation=Integer.parseInt(br.readLine());
+							User user=null;
+							System.out.println("\n1.Get all users details\n2.Get details by name or phone number"
+									+ "\n3.Update user details\n4.Delete user details \n5.Log Out ");
+							operation=Integer.parseInt(br.readLine());
 							switch(operation)
 							{
 							case 1:
 							{
-								System.out.println("Index UserName        Phone       Age      Balance");
-									System.out.println("********************************************************************************");
+								notFounBoolean=false;
+								System.out.println("Index\t\tUserName\t\tPhone\t\tAddress\t\tProof ID\t\tBalance");
+									System.out.println("*****************************************************************************************************************");
 									for(int i=0;i<usersList.size();i++)
 									{
 										user=usersList.get(i);
-										int index=i+1;
-										System.out.println(index+") "+user.getUserName()+"           "+user.getPhoneNumber()+"          "+user.getAge()+"        "+user.getBankBalance());
-										System.out.println("********************************************************************************");
+										//int index=i;
+										System.out.println(i+")\t\t"+user.getUserName()+"\t\t"+user.getPhoneNumber()+"\t\t"+user.getAddress()+"\t\t"+user.getProofId()+"\t\t"+user.getBankBalance());
+										System.out.println("****************************************************************************************************************");
 									}
 									break;
 							}
 							case 2:
-							{}
-							case 3:
-							{}
-							case 4:
-							{}
-							default:
 							{
-								System.out.println("Access denied!!");
+								notFounBoolean=false;
+								System.out.println("➡Enter name or phone number");
+								String hint=br.readLine();
+								System.out.println("Index\t\tUserName\t\tPhone\t\tAddress\t\tProof ID\t\tBalance");
+								System.out.println("*******************************************************88******************************************************************");
+								for(int i=0;i<usersList.size();i++)
+								{
+									user=usersList.get(i);
+									if(user.getUserName().contentEquals(hint)||user.getPhoneNumber().contentEquals(hint)) 
+									{
+									// int index=i+1;
+									System.out.println(i+")\t\t"+user.getUserName()+"\t\t"+user.getPhoneNumber()+"\t\t"+user.getAddress()+"\t\t"+user.getProofId()+"\t\t"+user.getBankBalance());
+									System.out.println("****************************************************************************************************************************");
+								}
+									else
+										System.out.println("❎ No match found");
+								}
 								break;
 							}
+							case 3:
+							{
+								notFounBoolean=false;
+								System.out.println("➡Select what do you want to update");
+								int update,id;
+
+								do {
+									
+									System.out.println("0.Go back to the main menu");
+									System.out.println("1.Update address");
+									System.out.println("2.Update mobile number");
+									System.out.println("\n➡Enter your choice");
+									update = Integer.parseInt(br.readLine());
+									switch(update) 
+									{
+									case 1:
+									{	
+										System.out.println("➡Get user detail by Id");
+										id=Integer.parseInt(br.readLine());
+										user=usersList.get(id);
+										//int index;
+										System.out.println("Index\t\tUserName\t\tPhone\t\tAddress\t\tProof ID\t\tBalance");
+										System.out.println("******************************************************************************************************************************");
+										
+										System.out.println(id+")\t\t"+user.getUserName()+"\t\t"+user.getPhoneNumber()+"\t\t"+user.getAddress()+"\t\t"+user.getProofId()+"\t\t"+user.getBankBalance());
+										System.out.println("************************************************************************************************************************************");
+										
+										System.out.println("➡Enter new address");
+										String newAddress=br.readLine();
+										user.setAddress(newAddress);
+										
+										System.out.println("Index\t\tUserName\t\tPhone\t\tAddress\t\tProof ID\t\tBalance");
+										System.out.println("******************************************************************************************************************************");
+										
+										System.out.println(id+")\t\t"+user.getUserName()+"\t\t"+user.getPhoneNumber()+"\t\t"+user.getAddress()+"\t\t"+user.getProofId()+"\t\t"+user.getBankBalance());
+										System.out.println("**********************************************8**********************************************************************************************");
+										System.out.println("✔ User address updated!");
+										break;
+									}
+									case 2:
+									{
+										System.out.println("➡Get user detail by Id");
+										id=Integer.parseInt(br.readLine());
+										user=usersList.get(id);
+										//int index=id+1;
+										System.out.println("Index\t\tUserName\t\tPhone\t\tAddress\t\tProof ID\t\tBalance");
+										System.out.println("********************************************8***************************************************************************************8*****");
+										
+										System.out.println(id+")\t\t"+user.getUserName()+"\t\t"+user.getPhoneNumber()+"\t\t"+user.getAddress()+"\t\t"+user.getProofId()+"\t\t"+user.getBankBalance());
+										System.out.println("**********************************************************************************************************************************************");
+										
+										System.out.println("➡Enter new mobile number");
+										String newMobile=br.readLine();
+										user.setPhoneNumber(newMobile);
+										
+										System.out.println("Index\t\tUserName\t\tPhone\t\tAddress\t\tProof ID\t\tBalance");
+										System.out.println("********************************************************************************************************************************************");
+										
+										System.out.println(id+")\t\t"+user.getUserName()+"\t\t"+user.getPhoneNumber()+"\t\t"+user.getAddress()+"\t\t"+user.getProofId()+"\t\t"+user.getBankBalance());
+										System.out.println("******************************************8******************************************************************************************************************");
+										System.out.println("✔ User mobile number updated!");
+										break;
+									}
+									
+									default:
+									{
+										System.out.println("❎Choose correct option");
+										break;
+									}
+								}
+									
+									
+								}while(update!=0);
+								
+							break;	
 							}
+							case 4:
+							{
+								notFounBoolean=false;
+								System.out.println("➡Enter name, mobile number or proof Id to delete user");
+								String deletee=br.readLine();
+								
+								for(int i=0;i<usersList.size();i++)
+								{
+									user=usersList.get(i);
+									if(user.getUserName().contentEquals(deletee)||user.getPhoneNumber().contentEquals(deletee)||user.getProofId().contentEquals(deletee))
+									{
+									user=usersList.remove(i);
+									System.out.println("✔ User deleted");
+									}
+									else
+										System.out.println("❎ User not found");
+								}
+								break;
+							}
+							
+							case 5:{
+								notFounBoolean=true;
+								System.out.println("✔Logged out");
+								
+								break;
+							}
+							default:
+							{
+								System.out.println("❎ Access denied!!");
+								break;
+							}
+						}
 						
-						}while(true);
-					
+						}while(!notFounBoolean);
 				}
 					else
 					{
-						System.out.println("Access denied!!");
+						System.out.println("❎ Access denied!!");
 					}
 					}
-				break;
+				  break;
 				case 2:
 				{
 					User testUser = null;
@@ -102,10 +220,10 @@ public class SV_bank {
 					String userpassword;
 					//user.setUserName(userName);
 					
-					System.out.println("Enter your username");
+					System.out.println("➡Enter your username");
 					userName=br.readLine();
 				
-					System.out.println("Enter your password");
+					System.out.println("➡Enter your password");
 					userpassword=br.readLine();
 					
 					//testUser.setUserName(userName);
@@ -118,7 +236,7 @@ public class SV_bank {
 						if(testUser.getUserName().contentEquals(userName) && testUser.getPassword1().contentEquals(userpassword))
 						{
 							notFounBoolean=true;
-							System.out.println("welcome "+testUser.getUserName());
+							System.out.println("\n-–--––--------------------------------–•(-• Welcome "+testUser.getUserName()+" •-)•–----------------------------------------\n");
 							do
 							{
 								System.out.println("\n1.Deposit money\n2.Withdraw money"
@@ -129,21 +247,21 @@ public class SV_bank {
 								case 1:
 								{
 									isBreakTheLoop=false;
-									System.out.println("Enter your amount :");
+									System.out.println("➡Enter your amount :");
 									long deposit= Long.parseLong(br.readLine());
 									deposit = service.deposit(testUser, deposit);
-									System.out.println("Your updated balance:"+testUser.getBankBalance());
+									System.out.println("✔Your updated balance:"+testUser.getBankBalance());
 									break;
 								}
 								case 2:
 								{
 									isBreakTheLoop=false;
-									System.out.println("Enter your Withdraw :");
+									System.out.println("➡Enter your Withdrawal amount :");
 									long withdraw= Long.parseLong(br.readLine());
 									String res = service.withDraw(testUser, withdraw);
 									
 									System.out.println(res);
-									System.out.println("Your current Balence "+testUser.getBankBalance());
+									System.out.println("✔Your current balance "+testUser.getBankBalance());
 									break;
 									
 									
@@ -153,7 +271,7 @@ public class SV_bank {
 									isBreakTheLoop=false;
 									String loanString = service.applyLoan(testUser);
 									System.out.println(loanString);
-									System.out.println("Your current Balence "+testUser.getBankBalance());
+									System.out.println("✔Your current balance "+testUser.getBankBalance());
 									break;
 								}
 								case 4:
@@ -161,25 +279,25 @@ public class SV_bank {
 									isBreakTheLoop=false;
 									String creString = service.applyCredit(testUser);
 									System.out.println(creString);
-									System.out.println("Your current Balence "+testUser.getBankBalance());
+									System.out.println("✔Your current balance "+testUser.getBankBalance());
 									
 									break;
 								}
 								case 5:
 								{
 									isBreakTheLoop=false;
-									System.out.println("Your current Balence "+testUser.getBankBalance());
+									System.out.println("✔Your current balance "+testUser.getBankBalance());
 									break;
 									
 								}
 								case 6:
 									isBreakTheLoop=true;
-									System.out.println("Get OUT");
+									System.out.println("✔Logged out");
 									break;
 									
 								default:
 								{
-									System.out.println("choose correct option");
+									System.out.println("❎ Choose correct option");
 									break;
 								}
 								}
@@ -190,32 +308,48 @@ public class SV_bank {
 						
 					}
 					if (!notFounBoolean) {
-						System.out.println("User not found");
+						System.out.println("❎ User not found");
 					}
 					
-					
-						
-					
-					
-					
 				}
-				break;
+				  break;
 				case 3:
 				{
-					System.out.println("Fill the application:");
-					System.out.println("Enter YourName:");
+					//System.out.println(validation.isNumber(Long.pars("630071328")));
+					String	phoneNumber,password1;
+					int age;
+					
+					System.out.println("\nFill the application:");
+					System.out.println("➡Enter your name:");
 					String userName=br.readLine();
-					System.out.println("Create a Password:");
-					String password1=br.readLine();;
-					System.out.println("Your age:");
-					int age=Integer.parseInt(br.readLine());
-					System.out.println("Enter Your Mobile number");
-					String phoneNumber=br.readLine();
-					System.out.println("Enter Your Address");
+					System.out.println("➡Create a password:");
+					do {
+						 password1=br.readLine();
+						 System.out.println(validation.passwordWarrining((validation.isValidPassword(password1))));
+					} while (!validation.isValidPassword(password1));
+					
+					System.out.println("➡Your age:");
+					do {
+						age=Integer.parseInt(br.readLine());
+						System.out.println(validation.isAgeWarning((validation.isAge(age))));
+					} while (!validation.isAge(age));
+					
+					//System.out.println("➡Enter your mobile number");
+					
+					System.out.println("➡Enter your mobile number");
+					do {
+							
+							phoneNumber = br.readLine();
+							System.out.println(validation.phoneNumberWarrning(validation.isNumber(Long.parseLong((phoneNumber)))));
+					}
+					while(!validation.isNumber(Long.parseLong((phoneNumber))));
+					
+					//System.out.println(validation.isNumber(Integer.parseInt(phoneNumber)));
+					System.out.println("➡Enter your address");
 					String address=br.readLine();
-					System.out.println("Any proof ID - with Proof Name");
+					System.out.println("➡Any proof ID - with Proof Name");
 					String proofId=br.readLine();
-					System.out.println("How much do you want deposit ?");
+					System.out.println("➡How much do you want deposit ?");
 					long bankBalance=Long.parseLong(br.readLine());
 					
 					User user=new User();
@@ -229,17 +363,19 @@ public class SV_bank {
 					user.setBankBalance(bankBalance);
 					//admin validation
 					usersList=service.addUser(user);
-					System.out.println("user added");
-					
+					System.out.println("✔Account Created");
+					break;
 				}
 				}
 				
-			}while(true);
+			}
+		while(true);
+		
 		}
 			
 				
 			 catch (Exception e) {
-				System.out.println("Input only Integers please");
+				System.out.println("❎ "+e);
 			}
 			
 			}
